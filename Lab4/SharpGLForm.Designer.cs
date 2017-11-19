@@ -32,13 +32,20 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.doiTuongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hinhLapPhuongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hinhCauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mat1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mat2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mat3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mat4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mat5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mat6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hinhCauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hinhTruToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.matTrenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.matDayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xungQuanhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hinhNonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xungQuanhToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +79,9 @@
             // 
             this.doiTuongToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hinhLapPhuongToolStripMenuItem,
-            this.hinhCauToolStripMenuItem});
+            this.hinhCauToolStripMenuItem,
+            this.hinhTruToolStripMenuItem,
+            this.hinhNonToolStripMenuItem});
             this.doiTuongToolStripMenuItem.Name = "doiTuongToolStripMenuItem";
             this.doiTuongToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.doiTuongToolStripMenuItem.Text = "Doi tuong";
@@ -90,6 +99,48 @@
             this.hinhLapPhuongToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.hinhLapPhuongToolStripMenuItem.Text = "Hinh lap phuong";
             // 
+            // mat1ToolStripMenuItem
+            // 
+            this.mat1ToolStripMenuItem.Name = "mat1ToolStripMenuItem";
+            this.mat1ToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.mat1ToolStripMenuItem.Text = "Mat 1";
+            this.mat1ToolStripMenuItem.Click += new System.EventHandler(this.mat1ToolStripMenuItem_Click);
+            // 
+            // mat2ToolStripMenuItem
+            // 
+            this.mat2ToolStripMenuItem.Name = "mat2ToolStripMenuItem";
+            this.mat2ToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.mat2ToolStripMenuItem.Text = "Mat 2";
+            this.mat2ToolStripMenuItem.Click += new System.EventHandler(this.mat2ToolStripMenuItem_Click);
+            // 
+            // mat3ToolStripMenuItem
+            // 
+            this.mat3ToolStripMenuItem.Name = "mat3ToolStripMenuItem";
+            this.mat3ToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.mat3ToolStripMenuItem.Text = "Mat 3";
+            this.mat3ToolStripMenuItem.Click += new System.EventHandler(this.mat3ToolStripMenuItem_Click);
+            // 
+            // mat4ToolStripMenuItem
+            // 
+            this.mat4ToolStripMenuItem.Name = "mat4ToolStripMenuItem";
+            this.mat4ToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.mat4ToolStripMenuItem.Text = "Mat 4";
+            this.mat4ToolStripMenuItem.Click += new System.EventHandler(this.mat4ToolStripMenuItem_Click);
+            // 
+            // mat5ToolStripMenuItem
+            // 
+            this.mat5ToolStripMenuItem.Name = "mat5ToolStripMenuItem";
+            this.mat5ToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.mat5ToolStripMenuItem.Text = "Mat 5";
+            this.mat5ToolStripMenuItem.Click += new System.EventHandler(this.mat5ToolStripMenuItem_Click);
+            // 
+            // mat6ToolStripMenuItem
+            // 
+            this.mat6ToolStripMenuItem.Name = "mat6ToolStripMenuItem";
+            this.mat6ToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.mat6ToolStripMenuItem.Text = "Mat 6";
+            this.mat6ToolStripMenuItem.Click += new System.EventHandler(this.mat6ToolStripMenuItem_Click);
+            // 
             // hinhCauToolStripMenuItem
             // 
             this.hinhCauToolStripMenuItem.Name = "hinhCauToolStripMenuItem";
@@ -97,47 +148,59 @@
             this.hinhCauToolStripMenuItem.Text = "Hinh cau";
             this.hinhCauToolStripMenuItem.Click += new System.EventHandler(this.hinhCauToolStripMenuItem_Click);
             // 
-            // mat1ToolStripMenuItem
+            // hinhTruToolStripMenuItem
             // 
-            this.mat1ToolStripMenuItem.Name = "mat1ToolStripMenuItem";
-            this.mat1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.mat1ToolStripMenuItem.Text = "Mat 1";
-            this.mat1ToolStripMenuItem.Click += new System.EventHandler(this.mat1ToolStripMenuItem_Click);
+            this.hinhTruToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.matTrenToolStripMenuItem,
+            this.matDayToolStripMenuItem,
+            this.xungQuanhToolStripMenuItem});
+            this.hinhTruToolStripMenuItem.Name = "hinhTruToolStripMenuItem";
+            this.hinhTruToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.hinhTruToolStripMenuItem.Text = "Hinh tru";
             // 
-            // mat2ToolStripMenuItem
+            // matTrenToolStripMenuItem
             // 
-            this.mat2ToolStripMenuItem.Name = "mat2ToolStripMenuItem";
-            this.mat2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.mat2ToolStripMenuItem.Text = "Mat 2";
-            this.mat2ToolStripMenuItem.Click += new System.EventHandler(this.mat2ToolStripMenuItem_Click);
+            this.matTrenToolStripMenuItem.Name = "matTrenToolStripMenuItem";
+            this.matTrenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.matTrenToolStripMenuItem.Text = "Mat tren";
+            this.matTrenToolStripMenuItem.Click += new System.EventHandler(this.matTrenToolStripMenuItem_Click);
             // 
-            // mat3ToolStripMenuItem
+            // matDayToolStripMenuItem
             // 
-            this.mat3ToolStripMenuItem.Name = "mat3ToolStripMenuItem";
-            this.mat3ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.mat3ToolStripMenuItem.Text = "Mat 3";
-            this.mat3ToolStripMenuItem.Click += new System.EventHandler(this.mat3ToolStripMenuItem_Click);
+            this.matDayToolStripMenuItem.Name = "matDayToolStripMenuItem";
+            this.matDayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.matDayToolStripMenuItem.Text = "Mat day";
+            this.matDayToolStripMenuItem.Click += new System.EventHandler(this.matDayToolStripMenuItem_Click);
             // 
-            // mat4ToolStripMenuItem
+            // xungQuanhToolStripMenuItem
             // 
-            this.mat4ToolStripMenuItem.Name = "mat4ToolStripMenuItem";
-            this.mat4ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.mat4ToolStripMenuItem.Text = "Mat 4";
-            this.mat4ToolStripMenuItem.Click += new System.EventHandler(this.mat4ToolStripMenuItem_Click);
+            this.xungQuanhToolStripMenuItem.Name = "xungQuanhToolStripMenuItem";
+            this.xungQuanhToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xungQuanhToolStripMenuItem.Text = "Xung quanh";
+            this.xungQuanhToolStripMenuItem.Click += new System.EventHandler(this.xungQuanhToolStripMenuItem_Click);
             // 
-            // mat5ToolStripMenuItem
+            // hinhNonToolStripMenuItem
             // 
-            this.mat5ToolStripMenuItem.Name = "mat5ToolStripMenuItem";
-            this.mat5ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.mat5ToolStripMenuItem.Text = "Mat 5";
-            this.mat5ToolStripMenuItem.Click += new System.EventHandler(this.mat5ToolStripMenuItem_Click);
+            this.hinhNonToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xungQuanhToolStripMenuItem1,
+            this.dayToolStripMenuItem});
+            this.hinhNonToolStripMenuItem.Name = "hinhNonToolStripMenuItem";
+            this.hinhNonToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.hinhNonToolStripMenuItem.Text = "Hinh non";
             // 
-            // mat6ToolStripMenuItem
+            // xungQuanhToolStripMenuItem1
             // 
-            this.mat6ToolStripMenuItem.Name = "mat6ToolStripMenuItem";
-            this.mat6ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.mat6ToolStripMenuItem.Text = "Mat 6";
-            this.mat6ToolStripMenuItem.Click += new System.EventHandler(this.mat6ToolStripMenuItem_Click);
+            this.xungQuanhToolStripMenuItem1.Name = "xungQuanhToolStripMenuItem1";
+            this.xungQuanhToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.xungQuanhToolStripMenuItem1.Text = "Xung quanh";
+            this.xungQuanhToolStripMenuItem1.Click += new System.EventHandler(this.xungQuanhToolStripMenuItem1_Click);
+            // 
+            // dayToolStripMenuItem
+            // 
+            this.dayToolStripMenuItem.Name = "dayToolStripMenuItem";
+            this.dayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dayToolStripMenuItem.Text = "Day";
+            this.dayToolStripMenuItem.Click += new System.EventHandler(this.dayToolStripMenuItem_Click);
             // 
             // SharpGLForm
             // 
@@ -170,6 +233,13 @@
         private System.Windows.Forms.ToolStripMenuItem mat5ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mat6ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hinhCauToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hinhTruToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem matTrenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem matDayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xungQuanhToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hinhNonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xungQuanhToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem dayToolStripMenuItem;
     }
 }
 
