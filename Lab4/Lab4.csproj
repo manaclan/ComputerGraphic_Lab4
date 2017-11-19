@@ -56,7 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Cube.cs" />
+    <Compile Include="Model\CubeTexture.cs" />
+    <Compile Include="Model\SphereTexture.cs" />
     <Compile Include="SharpGLForm.cs">
       <SubType>Form</SubType>
     </Compile>

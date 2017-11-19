@@ -95,6 +95,7 @@
             this.hinhCauToolStripMenuItem.Name = "hinhCauToolStripMenuItem";
             this.hinhCauToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.hinhCauToolStripMenuItem.Text = "Hinh cau";
+            this.hinhCauToolStripMenuItem.Click += new System.EventHandler(this.hinhCauToolStripMenuItem_Click);
             // 
             // mat1ToolStripMenuItem
             // 

@@ -18,7 +18,8 @@ namespace Lab4
     {
 
         Texture texture = new Texture();
-        int textureFlag = -1;
+        Lab4.Model.CubeTexture cubeTexture;
+        Lab4.Model.SphereTexture sphereTexture;
         const int CUBE_SURFACE_NUMBER_ONE = 01;
         const int CUBE_SURFACE_NUMBER_TWO = 02;
         const int CUBE_SURFACE_NUMBER_THREE = 03;
@@ -50,16 +51,22 @@ namespace Lab4
             gl.LoadIdentity();
 
             // Translate the cube
-            gl.Translate(-3.0f, 2.0f, -7.0f);
+            gl.Translate(-4.0f, 2.0f, -7.0f);
             gl.Rotate(angleCube, 1.0f, 1.0f, 1.0f);
             //  Rotate around the Y axis.
             //gl.Rotate(rotation, 0.0f, 1.0f, 0.0f);
 
-            LoadTextureAndDrawCube();
-
+            DrawCube();
+            gl.LoadIdentity();
+            gl.Translate(0.0f, 2.0f, -7.0f);
+            gl.Rotate(angleSphere, 1.0f, 1.0f, 1.0f);
+            
+            
+            DrawSphere();
             //  Nudge the rotation.
             rotation += 3.0f;
             angleCube -= 3.0f;
+            angleSphere += 3.0f;
         }
 
 
@@ -75,7 +82,8 @@ namespace Lab4
 
             //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
-
+            cubeTexture = new Lab4.Model.CubeTexture();
+            sphereTexture = new Lab4.Model.SphereTexture();
             //  Set the clear color.
             gl.ClearColor(0, 0, 0, 0);
         }
@@ -108,22 +116,134 @@ namespace Lab4
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
-      
-         
+        void DrawCube()
+        {
+            OpenGL gl =  openGLControl.OpenGL ;
+            gl.BlendFunc(SharpGL.Enumerations.BlendingSourceFactor.SourceAlpha, SharpGL.Enumerations.BlendingDestinationFactor.OneMinusSourceAlpha);
+            //gl.ClearColor(0, 0, 0, 1);
+            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
+
+            //gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_WRAP_S, SharpGL.OpenGL.GL_REPEAT);
+            //gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_WRAP_T, SharpGL.OpenGL.GL_REPEAT);
+
+            // Front Face
+            gl.Enable(SharpGL.OpenGL.GL_BLEND);
+            gl.Enable(SharpGL.OpenGL.GL_TEXTURE_2D);
+            gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MAG_FILTER, SharpGL.OpenGL.GL_LINEAR);
+            gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MIN_FILTER, SharpGL.OpenGL.GL_LINEAR);
+            
+            cubeTexture.surfaceNumberOneTexture.Bind(gl);
+            gl.Begin(OpenGL.GL_QUADS);
+            gl.TexCoord(0.0f, 0.0f); gl.Vertex(-1.0f, -1.0f, 1.0f);	// Bottom Left Of The Texture and Quad
+            gl.TexCoord(1.0f, 0.0f); gl.Vertex(1.0f, -1.0f, 1.0f);	// Bottom Right Of The Texture and Quad
+            gl.TexCoord(1.0f, 1.0f); gl.Vertex(1.0f, 1.0f, 1.0f);	// Top Right Of The Texture and Quad
+            gl.TexCoord(0.0f, 1.0f); gl.Vertex(-1.0f, 1.0f, 1.0f);	// Top Left Of The Texture and Quad
+            gl.End();
+            gl.Disable(OpenGL.GL_TEXTURE_2D);
+
+                
+            // Back Face
+                gl.Enable(SharpGL.OpenGL.GL_BLEND);
+                gl.Enable(SharpGL.OpenGL.GL_TEXTURE_2D);
+                gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MAG_FILTER, SharpGL.OpenGL.GL_LINEAR);
+                gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MIN_FILTER, SharpGL.OpenGL.GL_LINEAR);
+                cubeTexture.surfaceNumberTwoTexture.Bind(gl);
+                gl.Begin(OpenGL.GL_QUADS);
+                gl.TexCoord(1.0f, 0.0f); gl.Vertex(-1.0f, -1.0f, -1.0f);	// Bottom Right Of The Texture and Quad
+                gl.TexCoord(1.0f, 1.0f); gl.Vertex(-1.0f, 1.0f, -1.0f);	// Top Right Of The Texture and Quad
+                gl.TexCoord(0.0f, 1.0f); gl.Vertex(1.0f, 1.0f, -1.0f);	// Top Left Of The Texture and Quad
+                gl.TexCoord(0.0f, 0.0f); gl.Vertex(1.0f, -1.0f, -1.0f);	// Bottom Left Of The Texture and Quad
+                gl.End();
+                gl.Disable(OpenGL.GL_TEXTURE_2D);
+
+                
+            // Top Face
+                gl.Enable(SharpGL.OpenGL.GL_BLEND);
+                gl.Enable(SharpGL.OpenGL.GL_TEXTURE_2D);
+                gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MAG_FILTER, SharpGL.OpenGL.GL_LINEAR);
+                gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MIN_FILTER, SharpGL.OpenGL.GL_LINEAR);
+                cubeTexture.surfaceNumberThreeTexture.Bind(gl);
+                gl.Begin(OpenGL.GL_QUADS);
+                gl.TexCoord(0.0f, 1.0f); gl.Vertex(-1.0f, 1.0f, -1.0f);	// Top Left Of The Texture and Quad
+                gl.TexCoord(0.0f, 0.0f); gl.Vertex(-1.0f, 1.0f, 1.0f);	// Bottom Left Of The Texture and Quad
+                gl.TexCoord(1.0f, 0.0f); gl.Vertex(1.0f, 1.0f, 1.0f);	// Bottom Right Of The Texture and Quad
+                gl.TexCoord(1.0f, 1.0f); gl.Vertex(1.0f, 1.0f, -1.0f);	// Top Right Of The Texture and Quad
+                gl.End();
+                gl.Disable(OpenGL.GL_TEXTURE_2D);
+
+                
+            // Bottom Face
+                gl.Enable(SharpGL.OpenGL.GL_BLEND);
+                gl.Enable(SharpGL.OpenGL.GL_TEXTURE_2D);
+                gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MAG_FILTER, SharpGL.OpenGL.GL_LINEAR);
+                gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MIN_FILTER, SharpGL.OpenGL.GL_LINEAR);
+                cubeTexture.surfaceNumberFourTexture.Bind(gl);
+                gl.Begin(OpenGL.GL_QUADS);
+                gl.TexCoord(1.0f, 1.0f); gl.Vertex(-1.0f, -1.0f, -1.0f);	// Top Right Of The Texture and Quad
+                gl.TexCoord(0.0f, 1.0f); gl.Vertex(1.0f, -1.0f, -1.0f);	// Top Left Of The Texture and Quad
+                gl.TexCoord(0.0f, 0.0f); gl.Vertex(1.0f, -1.0f, 1.0f);	// Bottom Left Of The Texture and Quad
+                gl.TexCoord(1.0f, 0.0f); gl.Vertex(-1.0f, -1.0f, 1.0f);	// Bottom Right Of The Texture and Quad
+                gl.End();
+                gl.Disable(OpenGL.GL_TEXTURE_2D);
+                
+                
+            // Right face
+                gl.Enable(SharpGL.OpenGL.GL_BLEND);
+                gl.Enable(SharpGL.OpenGL.GL_TEXTURE_2D);
+                gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MAG_FILTER, SharpGL.OpenGL.GL_LINEAR);
+                gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MIN_FILTER, SharpGL.OpenGL.GL_LINEAR);
+            cubeTexture.surfaceNumberFiveTexture.Bind(gl);
+            gl.Begin(OpenGL.GL_QUADS);
+            gl.TexCoord(1.0f, 0.0f); gl.Vertex(1.0f, -1.0f, -1.0f);	// Bottom Right Of The Texture and Quad
+            gl.TexCoord(1.0f, 1.0f); gl.Vertex(1.0f, 1.0f, -1.0f);	// Top Right Of The Texture and Quad
+            gl.TexCoord(0.0f, 1.0f); gl.Vertex(1.0f, 1.0f, 1.0f);	// Top Left Of The Texture and Quad
+            gl.TexCoord(0.0f, 0.0f); gl.Vertex(1.0f, -1.0f, 1.0f);	// Bottom Left Of The Texture and Quad
+            gl.End();
+            gl.Disable(OpenGL.GL_TEXTURE_2D);
+
+            // Left Face
+            
+            gl.Enable(SharpGL.OpenGL.GL_BLEND);
+            gl.Enable(SharpGL.OpenGL.GL_TEXTURE_2D);
+            gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MAG_FILTER, SharpGL.OpenGL.GL_LINEAR);
+            gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MIN_FILTER, SharpGL.OpenGL.GL_LINEAR);
+            cubeTexture.surfaceNumberSixTexture.Bind(gl);
+            gl.Begin(OpenGL.GL_QUADS);
+            gl.TexCoord(0.0f, 0.0f); gl.Vertex(-1.0f, -1.0f, -1.0f);// Bottom Left Of The Texture and Quad
+            gl.TexCoord(1.0f, 0.0f); gl.Vertex(-1.0f, -1.0f, 1.0f);	// Bottom Right Of The Texture and Quad
+            gl.TexCoord(1.0f, 1.0f); gl.Vertex(-1.0f, 1.0f, 1.0f);	// Top Right Of The Texture and Quad
+            gl.TexCoord(0.0f, 1.0f); gl.Vertex(-1.0f, 1.0f, -1.0f);	// Top Left Of The Texture and Quad
+
+            gl.End();
+            gl.Disable(OpenGL.GL_TEXTURE_2D);
+
+        }
+        void DrawSphere()
+        {
+            OpenGL gl = openGLControl.OpenGL;
+            gl.Enable(SharpGL.OpenGL.GL_BLEND);
+            gl.Enable(SharpGL.OpenGL.GL_TEXTURE_2D);
+            gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MAG_FILTER, SharpGL.OpenGL.GL_LINEAR);
+            gl.TexParameter(SharpGL.OpenGL.GL_TEXTURE_2D, SharpGL.OpenGL.GL_TEXTURE_MIN_FILTER, SharpGL.OpenGL.GL_LINEAR);
+            sphereTexture.texture.Bind(gl);
+            IntPtr quadric = gl.NewQuadric();
+            gl.QuadricDrawStyle(quadric, OpenGL.GLU_FILL);
+            gl.Sphere(gl.NewQuadric(),1.5f,36,18);
+            gl.Disable(OpenGL.GL_TEXTURE_2D);
+        }
         /// <summary>
         /// The current rotation.
         /// </summary>
         private float rotation = 0.0f;
         private float angleCube = 0.0f;
-
+        private float angleSphere = 0.0f;
         private void mat1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                textureFlag = CUBE_SURFACE_NUMBER_ONE;
-                texture.Destroy(openGLControl.OpenGL);
-                texture.Create(openGLControl.OpenGL, openFileDialog.FileName);
+                cubeTexture.surfaceNumberOneTexture.Destroy(openGLControl.OpenGL);
+                cubeTexture.surfaceNumberOneTexture.Create(openGLControl.OpenGL, openFileDialog.FileName);
                 openGLControl.Invalidate();
             }
         }
@@ -133,9 +253,8 @@ namespace Lab4
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                textureFlag = CUBE_SURFACE_NUMBER_TWO;
-                texture.Destroy(openGLControl.OpenGL);
-                texture.Create(openGLControl.OpenGL, openFileDialog.FileName);
+                cubeTexture.surfaceNumberTwoTexture.Destroy(openGLControl.OpenGL);
+                cubeTexture.surfaceNumberTwoTexture.Create(openGLControl.OpenGL, openFileDialog.FileName);
                 openGLControl.Invalidate();
             }
         }
@@ -145,9 +264,8 @@ namespace Lab4
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                textureFlag = CUBE_SURFACE_NUMBER_THREE;
-                texture.Destroy(openGLControl.OpenGL);
-                texture.Create(openGLControl.OpenGL, openFileDialog.FileName);
+                cubeTexture.surfaceNumberThreeTexture.Destroy(openGLControl.OpenGL);
+                cubeTexture.surfaceNumberThreeTexture.Create(openGLControl.OpenGL, openFileDialog.FileName);
                 openGLControl.Invalidate();
             }
         }
@@ -157,9 +275,8 @@ namespace Lab4
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                textureFlag = CUBE_SURFACE_NUMBER_FOUR;
-                texture.Destroy(openGLControl.OpenGL);
-                texture.Create(openGLControl.OpenGL, openFileDialog.FileName);
+                cubeTexture.surfaceNumberFourTexture.Destroy(openGLControl.OpenGL);
+                cubeTexture.surfaceNumberFourTexture.Create(openGLControl.OpenGL, openFileDialog.FileName);
                 openGLControl.Invalidate();
             }
         }
@@ -169,9 +286,8 @@ namespace Lab4
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                textureFlag = CUBE_SURFACE_NUMBER_FIVE;
-                texture.Destroy(openGLControl.OpenGL);
-                texture.Create(openGLControl.OpenGL, openFileDialog.FileName);
+                cubeTexture.surfaceNumberFiveTexture.Destroy(openGLControl.OpenGL);
+                cubeTexture.surfaceNumberFiveTexture.Create(openGLControl.OpenGL, openFileDialog.FileName);
                 openGLControl.Invalidate();
             }
         }
@@ -181,9 +297,19 @@ namespace Lab4
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                textureFlag = CUBE_SURFACE_NUMBER_SIX;
-                texture.Destroy(openGLControl.OpenGL);
-                texture.Create(openGLControl.OpenGL, openFileDialog.FileName);
+                cubeTexture.surfaceNumberSixTexture.Destroy(openGLControl.OpenGL);
+                cubeTexture.surfaceNumberSixTexture.Create(openGLControl.OpenGL, openFileDialog.FileName);
+                openGLControl.Invalidate();
+            }
+        }
+
+        private void hinhCauToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                sphereTexture.texture.Destroy(openGLControl.OpenGL);
+                sphereTexture.texture.Create(openGLControl.OpenGL, openFileDialog.FileName);
                 openGLControl.Invalidate();
             }
         }
